@@ -25,7 +25,7 @@ Mettre en carré 4 pieces => groupe carré
 4 pièces (contiguës) => extraites les sous ensembles contigus de 4 pièces
 
 
-## BC calcul du vainqueur
+## BC calcul du vainqueur (victoire)
 
 > 4 pièces (contiguës) ayant en commun au moins une caractéristique. 
 
@@ -34,13 +34,13 @@ Déterminer si les 4 pièces ont au moins une caractéristique identique	(toutes
 Et il faut que les pièces soient posées par le même joueur
 
 
-## BC de jeu qui se joue à tour de rôle
+## BC de jeu qui se joue à tour de rôle (game play)
 Système qui permet de "réglementer" les tours de jeu
 2 joueurs (implicite mais évident)
 Jouer l’un après l’autre
 votre adversaire choisie une des pièces qui n'a pas été joué et vous la donne, puis c’est à vous de la poser (selon les principes ci dessous)
 
-## BC de l'ensemble des pièces existantes
+## BC de l'ensemble des pièces existantes (pièces)
 >	16 pièces toutes différentes ayant un point commun avec 7 autres.
 8 pièces hautes , 8 claires, 8 rondes et 8 creuses.
 
@@ -51,7 +51,7 @@ On en déduit:
  - Remplissage :  pleine/vide
 
 
-## BC de vérification du placement des pions:
+## BC de vérification du placement des pions (contrôle position):
 
 Jouer que des pièces qui existent:
 
@@ -62,11 +62,15 @@ Jouer que des pièces qui existent:
 
 > Composé de 16 cases, 4 sur 4, il est en début de partie vide de toutes pièces.
 
+# Cartographie à la Wardley
+
+https://draft.io/wmqbfrk8mvt5me8vygugq72567565kgeamjqk3uwt7mm
+
 # Par quoi commencer?
 
-Le plateau est indépendant.
+Le plateau est presque indépendant, il connait juste la présence des pièces.
 L'ensemble des pièces est indépendant.
-La géométrie est indépendante.
+La géométrie est dépendante du plateau
 
 La verif des pièces a besoin de connaitre les pièces
 Le calcul du vainqueur a besoin de connaitre les pieces et les joueurs
