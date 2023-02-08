@@ -1,6 +1,6 @@
 # Quatro-TDD-Kotlin-2023
 
-[QUATRO, un jeu de plateau décrit en francais](https://www.trictrac.net/jeu-de-societe/quarto)
+[QUATRO, un jeu de quatro décrit en francais](https://www.trictrac.net/jeu-de-societe/quarto)
 
 Typiquement, sur exemple aussi simple, 
 si on prend le temps de lire les règles attentivements
@@ -55,7 +55,7 @@ On en déduit:
 
 Jouer que des pièces qui existent:
 
-> Vous devez la poser sur un emplacement libre du plateau.
+> Vous devez la poser sur un emplacement libre du quatro.
 
 
 ## BC Plateau:  
@@ -68,9 +68,9 @@ https://draft.io/wmqbfrk8mvt5me8vygugq72567565kgeamjqk3uwt7mm
 
 # Par quoi commencer?
 
-Le plateau est presque indépendant, il connait juste la présence des pièces.
+Le quatro est presque indépendant, il connait juste la présence des pièces.
 L'ensemble des pièces est indépendant.
-La géométrie est dépendante du plateau
+La géométrie est dépendante du quatro
 
 La verif des pièces a besoin de connaitre les pièces
 Le calcul du vainqueur a besoin de connaitre les pieces et les joueurs
@@ -79,6 +79,6 @@ Le BC de la partie appelle la geométrie, à partir des résultats de celle ci
 elle peut appeler le calcul du vainqueur pour savoir si on continue ou si on arrête
 
 
-Le BC de la partie a besoin du plateau, des jeux, des joueurs,
+Le BC de la partie a besoin du quatro, des jeux, des joueurs,
 de la verif de placement des pions, et de la regle de victoire qui dans ce cas là 
 a besoin de la géométrie (comme expliqué juste avant).
