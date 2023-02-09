@@ -2,7 +2,7 @@ package quatro
 
 class TempPieceAPlacer
 constructor(
-    private val plateau: Plateau4x4,
+    private val plateau: PlateauDimensionsVariables,
     private val piece: Piece
 ) : PieceAPlacer {
 

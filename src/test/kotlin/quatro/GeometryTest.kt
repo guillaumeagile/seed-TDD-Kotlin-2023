@@ -3,10 +3,11 @@ package quatro
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.collections.shouldContainAll
 
+@Suppress("unused")
 class GeometryTest : ShouldSpec({
     xcontext("un plateau est formé")
     {
-        val plateau = Plateau4x4().Place(FaussePiece(1)).En(0,0)  //d'abord testons ceci
+        val plateau = PlateauDimensionsVariables().Place(FaussePiece(1)).En(0,0)  //d'abord testons ceci
         val sut = Geometrie(plateau)
 
         should("retourner toutes les pièces à la verticale") {
