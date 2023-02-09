@@ -14,11 +14,11 @@ class PieceTest : ShouldSpec({
             sut shouldBe FaussePiece(1)
             sut shouldNotBe FaussePiece(2)
             sut shouldNotBe PasDePiece()
-
-
         }
 
+        should("rien c'est rien") {
+            PasDePiece() shouldBe  PasDePiece()
+        }
 
     }
-
 })

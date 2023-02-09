@@ -1,11 +1,11 @@
 package quatro
 
 import io.kotest.core.spec.style.ShouldSpec
-import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.shouldBe
 
+@Suppress("unused")
 class PlateauTest : ShouldSpec({
-    xcontext("un plateau est formé")
+    context("un plateau est formé")
     {
         val sut = Plateau4x4()
 
@@ -15,10 +15,9 @@ class PlateauTest : ShouldSpec({
 
             actual shouldBe PasDePiece()
 
-            //TODO: écrire le value object FaussePiece (plus simple que la pièce avec des caractéristiques)
         }
 
-        should("placer et retrouver une pièce ") {
+        xshould("placer et retrouver une pièce ") {
            val result = sut.Place(FaussePiece(1)).En(0,0)  //d'abord testons ceci
 
             val actual = result.EstEn(0,0)
