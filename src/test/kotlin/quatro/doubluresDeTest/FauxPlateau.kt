@@ -1,4 +1,8 @@
-package quatro
+package quatro.doubluresDeTest
+
+import quatro.Piece
+import quatro.PieceAPlacer
+import quatro.Plateau
 
 class FauxPlateau : Plateau {
     override fun Place(piece: Piece): PieceAPlacer {

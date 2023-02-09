@@ -2,6 +2,7 @@ package quatro
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.collections.shouldContainAll
+import quatro.doubluresDeTest.FaussePiece
 
 @Suppress("unused")
 class GeometryTest : ShouldSpec({

@@ -2,6 +2,7 @@ package quatro
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
+import quatro.doubluresDeTest.FaussePiece
 
 @Suppress("unused")
 class PlateauTest : ShouldSpec({
@@ -29,9 +30,9 @@ class PlateauTest : ShouldSpec({
                 .Place(FaussePiece(1)).En(0,0)
                 .Place(FaussePiece(2)).En(4000,3000)
 
-            result.EstEn(0,0) shouldBe FaussePiece(1)
             result.EstEn(4000,3000) shouldBe FaussePiece(2)
             result.EstEn(1,1) shouldBe PasDePiece()
+            result.EstEn(0,0) shouldBe FaussePiece(1)
         }
     }
 
