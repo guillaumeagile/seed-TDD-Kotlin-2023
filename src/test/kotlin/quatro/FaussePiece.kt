@@ -1,5 +1,5 @@
 package quatro
 
-class FaussePiece(id: Int) : Piece {
+data class FaussePiece(val id: Int) : Piece {
 
 }
