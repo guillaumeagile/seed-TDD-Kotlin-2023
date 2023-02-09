@@ -5,4 +5,8 @@ class Plateau4x4 : Plateau {
         TODO("Not yet implemented")
     }
 
+    override fun EstEn(x: Int, y: Int): Piece {
+        TODO("Not yet implemented")
+    }
+
 }

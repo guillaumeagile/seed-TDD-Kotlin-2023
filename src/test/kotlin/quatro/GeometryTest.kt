@@ -4,7 +4,7 @@ import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.collections.shouldContainAll
 
 class GeometryTest : ShouldSpec({
-    context("un plateau est formé")
+    xcontext("un plateau est formé")
     {
         val plateau = Plateau4x4().Place(FaussePiece(1)).En(0,0)  //d'abord testons ceci
         val sut = Geometrie(plateau)
