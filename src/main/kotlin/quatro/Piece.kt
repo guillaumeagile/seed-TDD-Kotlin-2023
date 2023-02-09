@@ -1,0 +1,5 @@
+package quatro
+
+interface Piece  {
+
+}
