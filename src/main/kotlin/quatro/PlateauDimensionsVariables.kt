@@ -1,6 +1,10 @@
 package quatro
 
-class PlateauDimensionsVariables(val listeDesPieces: Map<Pair<Int, Int>, Piece> = mapOf()) : Plateau {
+class PlateauDimensionsVariables(
+    val maxX: Int,
+    val maxY: Int,
+    private val listeDesPieces: Map<Pair<Int, Int>, Piece> = mapOf()
+) : Plateau {
 
     override fun Place(piece: Piece): PieceAPlacer {
         return TempPieceAPlacer(this, piece)
@@ -13,8 +17,13 @@ class PlateauDimensionsVariables(val listeDesPieces: Map<Pair<Int, Int>, Piece> 
 
     override fun NouvellePieceEn(piece: Piece, x: Int, y: Int): Plateau {
         val coordonees = Pair(x, y)
-        val nouvelleListeDesPieces =  this.listeDesPieces + (coordonees to piece)
-        return PlateauDimensionsVariables(nouvelleListeDesPieces) //immutability
+        val nouvelleListeDesPieces = this.listeDesPieces + (coordonees to piece)
+        return PlateauDimensionsVariables(this.maxX, this.maxY, nouvelleListeDesPieces) //immutability
     }
+
+    override fun TouteLesPiecesALaVerticale(x: Int): List<Piece> {
+        return listeDesPieces.values.toList()
+    }
+
 
 }

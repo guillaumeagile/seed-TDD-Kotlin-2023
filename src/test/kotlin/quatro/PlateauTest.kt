@@ -8,7 +8,7 @@ import quatro.doubluresDeTest.FaussePiece
 class PlateauTest : ShouldSpec({
     context("un plateau a dimension variable est formé")
     {
-        val sut = PlateauDimensionsVariables()
+        val sut = PlateauDimensionsVariables(4000, 3000)
 
         should("ne pas retrouver une pièce qui n'a pas été placé ") {
 

@@ -17,4 +17,8 @@ class FauxPlateau : Plateau {
         TODO("Not yet implemented")
     }
 
+    override fun TouteLesPiecesALaVerticale(x: Int): List<Piece> {
+        TODO("Not yet implemented")
+    }
+
 }

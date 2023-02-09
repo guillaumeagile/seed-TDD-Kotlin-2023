@@ -6,17 +6,17 @@ import quatro.doubluresDeTest.FaussePiece
 
 @Suppress("unused")
 class GeometryTest : ShouldSpec({
-    xcontext("un plateau est formé")
+    context("un plateau est formé")
     {
-        val plateau = PlateauDimensionsVariables().Place(FaussePiece(1)).En(0,0)  //d'abord testons ceci
-        val sut = Geometrie(plateau)
+        val sut = PlateauDimensionsVariables(3, 3)
+            .Place(FaussePiece(1)).En(0,0)
+            .Place(FaussePiece(2)).En(0,1)
 
         should("retourner toutes les pièces à la verticale") {
-            val actual = sut.TouteLesPiecesALaVerticale()
+            val actual = sut.TouteLesPiecesALaVerticale(0)
 
-            val expected = listOf(
-                listOf(FaussePiece(1), FaussePiece(2)),
-                listOf(FaussePiece(3), FaussePiece(4)))
+            val expected =
+                listOf(FaussePiece(1), FaussePiece(2))
             actual shouldContainAll expected
         }
     }
