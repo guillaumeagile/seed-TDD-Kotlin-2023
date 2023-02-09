@@ -9,4 +9,8 @@ class FauxPlateau : Plateau {
         TODO("Not yet implemented")
     }
 
+    override fun NouvellePieceEn(piece: Piece, x: Int, y: Int): Plateau {
+        TODO("Not yet implemented")
+    }
+
 }

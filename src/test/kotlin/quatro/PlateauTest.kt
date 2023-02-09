@@ -14,10 +14,9 @@ class PlateauTest : ShouldSpec({
             val actual = sut.EstEn(0,0)
 
             actual shouldBe PasDePiece()
-
         }
 
-        xshould("placer et retrouver une pièce ") {
+        should("placer et retrouver une pièce ") {
            val result = sut.Place(FaussePiece(1)).En(0,0)  //d'abord testons ceci
 
             val actual = result.EstEn(0,0)
