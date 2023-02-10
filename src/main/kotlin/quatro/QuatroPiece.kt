@@ -6,20 +6,37 @@ data class QuatroPiece(
     val couleur: Couleur,
     val cavite: Cavite
 ) {
+    infix fun possedeUneCaracteristiqueCommuneAvec(autre: QuatroPiece): Boolean {
+        if (hauteur == autre.hauteur) return true
+        if (forme == autre.forme) return true
+        return false
+    }
+
+    fun differentPour(hauteur: Hauteur): QuatroPiece {
+        return QuatroPiece(
+            hauteur,
+            this.forme,
+            this.couleur,
+            this.cavite
+        )
+    }
 }
 
 enum class Couleur {
-    SOMBRE
+    SOMBRE,
+    CLAIRE
 
 }
 
 enum class Cavite {
-    CREUSE
+    CREUSE,
+    PLEINE
 
 }
 
 enum class Forme {
-    RONDE
+    RONDE,
+    CARRE
 
 }
 

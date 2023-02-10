@@ -32,8 +32,6 @@ class PieceTest : ShouldSpec({
             cavite = Cavite.CREUSE
         )
 
-
-
         should("égalite pour 4 caractéristiques identique") {
             val attendu = QuatroPiece(
                 hauteur = Hauteur.BASSE,
@@ -44,15 +42,51 @@ class PieceTest : ShouldSpec({
             observe shouldBe attendu
         }
 
-        should("inégalite de deux pièces lorsqu'elles diffèrent d'une caractéristique") {
+        should("inégalite de deux pièces lorsqu'elles diffèrent d'une caractéristique ici la hauteur") {
+            val attendu = observe.differentPour(hauteur = Hauteur.HAUT)
+
+            observe shouldNotBe attendu
+        }
+
+        should("devrait avoir une caractéristique en commun") {
+            val attendu = QuatroPiece(
+                hauteur = Hauteur.BASSE,
+                forme = Forme.CARRE,
+                couleur = Couleur.CLAIRE,
+                cavite = Cavite.PLEINE
+            )
+            observe possedeUneCaracteristiqueCommuneAvec attendu shouldBe true
+        }
+
+        should("aucune caractéristique en commun") {
+            val attendu = QuatroPiece(
+                hauteur = Hauteur.HAUT,
+                forme = Forme.CARRE,
+                couleur = Couleur.CLAIRE,
+                cavite = Cavite.PLEINE
+            )
+            observe possedeUneCaracteristiqueCommuneAvec attendu shouldBe false
+        }
+
+        should("ces deux pieces ont pour unique caractéristique commune la forme") {
             val attendu = QuatroPiece(
                 hauteur = Hauteur.HAUT,
                 forme = Forme.RONDE,
-                couleur = Couleur.SOMBRE,
-                cavite = Cavite.CREUSE
+                couleur = Couleur.CLAIRE,
+                cavite = Cavite.PLEINE
             )
-            observe shouldNotBe attendu
+            observe possedeUneCaracteristiqueCommuneAvec attendu shouldBe true
         }
+        should("ces deux pieces ont pour unique caractéristique commune la couleur") {
+            val attendu = QuatroPiece(
+                hauteur = Hauteur.HAUT,
+                forme = Forme.CARRE,
+                couleur = Couleur.SOMBRE,
+                cavite = Cavite.PLEINE
+            )
+            observe possedeUneCaracteristiqueCommuneAvec attendu shouldBe true
+        }
+
     }
 
 
