@@ -1,9 +1,9 @@
 package quatro
 
 interface Plateau {
-    fun Place(piece: Piece): PieceAPlacer
-    fun EstEn(x: Int, y: Int): Piece
-    fun NouvellePieceEn(piece: Piece, x: Int, y: Int): Plateau
-     fun TouteLesPiecesALaVerticale(x: Int):  List<Piece>
+    fun placer(piece: Piece): PieceAPlacer
+    fun estEn(x: Int, y: Int): Piece
+    fun nouvellePieceEn(piece: Piece, x: Int, y: Int): Plateau
+     fun touteLesPiecesALaVerticale(x: Int):  List<Piece>
 
 }

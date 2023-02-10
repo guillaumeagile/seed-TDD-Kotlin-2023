@@ -7,7 +7,7 @@ constructor(
 ) : PieceAPlacer {
 
     override fun En(x: Int, y: Int): Plateau {
-        return plateau.NouvellePieceEn(piece, x, y)
+        return plateau.nouvellePieceEn(piece, x, y)
     }
 
 }

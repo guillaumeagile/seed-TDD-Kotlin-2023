@@ -12,27 +12,27 @@ class PlateauTest : ShouldSpec({
 
         should("ne pas retrouver une pièce qui n'a pas été placé ") {
 
-            val actual = sut.EstEn(0,0)
+            val actual = sut.estEn(0,0)
 
             actual shouldBe PasDePiece()
         }
 
         should("placer et retrouver une pièce ") {
-           val result = sut.Place(FaussePiece(1)).En(0,0)
+           val result = sut.placer(FaussePiece(1)).En(0,0)
 
-            val actual = result.EstEn(0,0)
+            val actual = result.estEn(0,0)
 
             actual shouldBe FaussePiece(1)
         }
 
         should("placer et retrouver une 2e pièce ") {
             val result = sut
-                .Place(FaussePiece(1)).En(0,0)
-                .Place(FaussePiece(2)).En(4000,3000)
+                .placer(FaussePiece(1)).En(0,0)
+                .placer(FaussePiece(2)).En(4000,3000)
 
-            result.EstEn(4000,3000) shouldBe FaussePiece(2)
-            result.EstEn(1,1) shouldBe PasDePiece()
-            result.EstEn(0,0) shouldBe FaussePiece(1)
+            result.estEn(4000,3000) shouldBe FaussePiece(2)
+            result.estEn(1,1) shouldBe PasDePiece()
+            result.estEn(0,0) shouldBe FaussePiece(1)
         }
     }
 
