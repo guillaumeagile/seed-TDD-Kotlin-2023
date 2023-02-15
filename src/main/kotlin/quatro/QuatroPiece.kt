@@ -7,9 +7,13 @@ data class QuatroPiece(
     val cavite: Cavite
 ) {
     infix fun possedeUneCaracteristiqueCommuneAvec(autre: QuatroPiece): Boolean {
-        if (hauteur == autre.hauteur) return true
-        if (forme == autre.forme) return true
-        return false
+        return when {
+            hauteur == autre.hauteur -> true
+            forme == autre.forme -> true
+            couleur == autre.couleur -> true
+            cavite == autre.cavite -> true
+            else -> false
+        }
     }
 
     fun differentPour(hauteur: Hauteur): QuatroPiece {
@@ -18,6 +22,31 @@ data class QuatroPiece(
             this.forme,
             this.couleur,
             this.cavite
+        )
+    }
+
+    fun differentPour(forme: Forme): QuatroPiece {
+        return QuatroPiece(
+            this.hauteur,
+            forme,
+            this.couleur,
+            this.cavite
+        )
+    }
+    fun differentPour(couleur: Couleur): QuatroPiece {
+        return QuatroPiece(
+            this.hauteur,
+            this.forme,
+            couleur,
+            this.cavite
+        )
+    }
+    fun differentPour(cavite: Cavite): QuatroPiece {
+        return QuatroPiece(
+            this.hauteur,
+            this.forme,
+            this.couleur,
+            cavite
         )
     }
 }

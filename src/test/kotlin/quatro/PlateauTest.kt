@@ -15,6 +15,8 @@ class PlateauTest : ShouldSpec({
             val actual = sut.estEn(0,0)
 
             actual shouldBe PasDePiece()
+
+            //sut.lisgnesHorizontale(1).piecesDuMemeJoueur().ayantAuMoinsUneCaracteristiqueEncommmun().estDeMemeTaillqueLaDiagonale()
         }
 
         should("placer et retrouver une pièce ") {
