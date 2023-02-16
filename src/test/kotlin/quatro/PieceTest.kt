@@ -9,7 +9,7 @@ import quatro.doubluresDeTest.FaussePiece
 class PieceTest : ShouldSpec({
     context("un piece est déclarée")
     {
-        val sut = FaussePiece(1)
+        val sut = FaussePiece(1);
 
         should("égalite et inégalité") {
             sut shouldBe FaussePiece(1)

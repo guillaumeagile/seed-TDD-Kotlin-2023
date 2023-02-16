@@ -54,19 +54,16 @@ data class QuatroPiece(
 enum class Couleur {
     SOMBRE,
     CLAIRE
-
 }
 
 enum class Cavite {
     CREUSE,
     PLEINE
-
 }
 
 enum class Forme {
     RONDE,
     CARRE
-
 }
 
 enum class Hauteur {
