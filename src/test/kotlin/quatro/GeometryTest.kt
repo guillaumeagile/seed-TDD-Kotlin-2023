@@ -2,6 +2,7 @@ package quatro
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.collections.shouldContainAll
+import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import quatro.doubluresDeTest.FaussePiece
 
@@ -33,7 +34,7 @@ class GeometryTest : ShouldSpec({
 
             val expected =
                 listOf(FaussePiece(1), FaussePiece(2))
-            actual shouldContainAll expected
+            actual shouldContainExactly expected
             actual.size shouldBe  2
         }
     }

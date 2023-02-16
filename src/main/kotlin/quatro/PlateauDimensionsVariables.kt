@@ -2,7 +2,6 @@ package quatro
 
 typealias Coordonees = Pair<Int, Int>
 
-//TODO: the same here, could be an idea to introduce type Coordonnées!
 class PlateauDimensionsVariables(
     val maxX: Int,
     val maxY: Int,
