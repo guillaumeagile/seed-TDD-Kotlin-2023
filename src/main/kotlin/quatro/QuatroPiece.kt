@@ -5,7 +5,7 @@ data class QuatroPiece(
     val forme: Forme,
     val couleur: Couleur,
     val cavite: Cavite
-) {
+) : Piece {
     infix fun possedeUneCaracteristiqueCommuneAvec(autre: QuatroPiece): Boolean {
         return when {
             hauteur == autre.hauteur -> true

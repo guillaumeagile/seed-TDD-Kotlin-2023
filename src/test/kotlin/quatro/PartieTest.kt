@@ -27,16 +27,15 @@ class PartieTest : ShouldSpec({
         }
 
         should("personne n'a joué") {
-            val observé = partie.dernierCoupJouéPar()
-
-            observé shouldBe Joueur.AUCUN
+            partie.joueurEnCours() shouldBe Joueur.AUCUN
+            partie.dernierJoueur shouldBe Joueur.AUCUN
         }
 
 
         should("un joueur joue une coup") {
              partie =  partie.joueur(Joueur.UN)
 
-            val observé = partie.dernierCoupJouéPar()
+            val observé = partie.joueurEnCours()
 
              observé shouldBe Joueur.UN
         }
@@ -45,19 +44,37 @@ class PartieTest : ShouldSpec({
             partie =  partie.joueur(Joueur.UN)
             partie =  partie.joueur(Joueur.DEUX)
 
-            val observé = partie.dernierCoupJouéPar()
+            val observé = partie.joueurEnCours()
 
             observé shouldBe Joueur.DEUX
         }
 
-        should("un joueur joue deux coups de suite") {
+        should("un joueur joue deux coups de suite") {//TODO: ca va se déplacer naturellement vers PartieEntreDeuxCoups
             partie =  partie.joueur(Joueur.UN)
             partie =  partie.joueur(Joueur.UN)
 
-            val observé = partie.dernierCoupJouéPar()
+            val observé = partie.joueurEnCours()
 
             observé shouldBe Joueur.UN
         }
+
+        should("test haut niveau idéal") {
+            partie =  partie.joueur(Joueur.UN).pose(piece1).en( 65, 0).joue()
+           /// partie.joueur(Joueur.UN).en( 0, 0).pose(piece1).joue()
+
+           // partie = partie.en( 0, 0).pose(piece1).joue()   ->  TODO: rendre ceci impossible
+
+            val pieceObservéeEn65 = partie.estEn(65,0)
+            val pieceObservéeEn0 = partie.estEn(0,0)
+
+           pieceObservéeEn65 shouldBe piece1
+           pieceObservéeEn0 shouldBe PasDePiece()
+
+            partie.dernierJoueur shouldBe Joueur.UN
+        }
+
+        // on experimentera 2 écoles de tests "d'intégration": faut il dans la partie injecter un faux plateau, ou bien tester socialement avec le bon plateau?
+
     }
 
 })

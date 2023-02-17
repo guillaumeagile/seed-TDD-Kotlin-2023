@@ -1,16 +1,34 @@
 package quatro
 
-class Partie( val plateau: Plateau) {
+class Partie(val plateau: Plateau, public val dernierJoueur: Joueur = Joueur.AUCUN) {
 
-    private var dernierJoueur: Joueur = Joueur.AUCUN
+    private var derniereCoordonnees = Coordonees(0, 0)
+    private var dernierePieceAPlacer: Piece = PasDePiece()
+    private var joueurEnCours: Joueur = Joueur.AUCUN
 
-    fun dernierCoupJouéPar(): Joueur {
-        return dernierJoueur
-    }
+    fun joueurEnCours(): Joueur = joueurEnCours
+
 
     fun joueur(joueur: Joueur): Partie {
-        this.dernierJoueur = joueur
-       return this
+        this.joueurEnCours = joueur
+        return this
+    }
+
+    fun pose(piece: Piece): Partie {
+        this.dernierePieceAPlacer = piece
+        return this
+    }
+
+    fun estEn(x: Int, y: Int): Piece =
+        plateau.estEn(x, y)
+
+    fun en(x: Int, y: Int): Partie {
+        this.derniereCoordonnees = Coordonees(x, y)
+        return this
+    }
+
+    fun joue(): Partie {
+        return Partie(plateau.placer(this.dernierePieceAPlacer).En(this.derniereCoordonnees), this.joueurEnCours)
     }
 
 }
