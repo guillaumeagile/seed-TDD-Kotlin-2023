@@ -8,73 +8,65 @@ class PartieTest : ShouldSpec({
     context("une nouvelle partie est démarée")
     {
         val plateau = PlateauDimensionsVariables(4000, 3000)
-        var partie = Partie( plateau)
+        var partie = Partie(plateau)
         val piece1 = QuatroPiece(
             hauteur = Hauteur.HAUT,
             forme = Forme.CARRE,
             couleur = Couleur.CLAIRE,
             cavite = Cavite.PLEINE
         )
-
-
-        xshould("test haut niveau idéal") {
-          //  partie =  partie.joueur(Joueur.UN).placer(piece1).En(0, 0)
-            //TODO: renommer placer en place
-
-            //val observé = partie.estGagnée()
-
-           // observé shouldBe false
-        }
+        val piece2 = QuatroPiece(
+            hauteur = Hauteur.BASSE,
+            forme = Forme.CARRE,
+            couleur = Couleur.CLAIRE,
+            cavite = Cavite.PLEINE
+        )
+        |
 
         should("personne n'a joué") {
-            partie.joueurEnCours() shouldBe Joueur.AUCUN
             partie.dernierJoueur shouldBe Joueur.AUCUN
         }
 
 
         should("un joueur joue une coup") {
-             partie =  partie.joueur(Joueur.UN)
+            val partieEnCours = partie.joueur2(Joueur.UN)
 
-            val observé = partie.joueurEnCours()
+            val observé2 = partieEnCours.dernierJoueur()
 
-             observé shouldBe Joueur.UN
+            observé2 shouldBe Joueur.UN
         }
 
-        should("un autre joueur joue une coup") {
-            partie =  partie.joueur(Joueur.UN)
-            partie =  partie.joueur(Joueur.DEUX)
 
-            val observé = partie.joueurEnCours()
+        should("un autre joueur joue ensuite") {//TODO: ca va se déplacer naturellement vers PartieEntreDeuxCoups
+            val coupEnCours = partie.joueur2(Joueur.UN)
+            val coupSuivant = coupEnCours.en(0, 0).pose(piece1).joue()
+            val coupEnCoursSuivant = coupSuivant.joueur2(Joueur.DEUX)
+
+            val observé = coupEnCoursSuivant.dernierJoueur()
 
             observé shouldBe Joueur.DEUX
         }
 
-        should("un joueur joue deux coups de suite") {//TODO: ca va se déplacer naturellement vers PartieEntreDeuxCoups
-            partie =  partie.joueur(Joueur.UN)
-            partie =  partie.joueur(Joueur.UN)
+        should("test haut niveau idéal, deux joueurs joue coup sur coup") {
+            val coup1 = partie.joueur2(Joueur.UN).pose(piece1).en(6, 5).joue()
+            val coup2 = coup1.joueur2(Joueur.DEUX).en(1, 0).pose(piece2).joue()
 
-            val observé = partie.joueurEnCours()
+            val pieceObservéeEn65 = coup2.estEn(6, 5)
+            val pieceObservéeEn10 = coup2.estEn(1, 0)
+            val pieceObservéeEn0 = coup2.estEn(1, 0)
 
-            observé shouldBe Joueur.UN
-        }
+            pieceObservéeEn65 shouldBe piece1
+            pieceObservéeEn10 shouldBe piece2
+            pieceObservéeEn0 shouldBe PasDePiece()
+            //vérifier que les pieces posées coup après coup sont bien inscrites sur le plateau
 
-        should("test haut niveau idéal") {
-            partie =  partie.joueur(Joueur.UN).pose(piece1).en( 65, 0).joue()
-           /// partie.joueur(Joueur.UN).en( 0, 0).pose(piece1).joue()
-
-           // partie = partie.en( 0, 0).pose(piece1).joue()   ->  TODO: rendre ceci impossible
-
-            val pieceObservéeEn65 = partie.estEn(65,0)
-            val pieceObservéeEn0 = partie.estEn(0,0)
-
-           pieceObservéeEn65 shouldBe piece1
-           pieceObservéeEn0 shouldBe PasDePiece()
-
-            partie.dernierJoueur shouldBe Joueur.UN
+            coup2.dernierJoueur shouldBe Joueur.DEUX
         }
 
         // on experimentera 2 écoles de tests "d'intégration": faut il dans la partie injecter un faux plateau, ou bien tester socialement avec le bon plateau?
 
+
+        // test à écrire:
     }
 
 })
