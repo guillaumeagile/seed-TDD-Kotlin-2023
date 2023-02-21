@@ -46,6 +46,16 @@ class PartieTest : ShouldSpec({
             observé shouldBe Joueur.DEUX
         }
 
+        should("test haut niveau idéal, deux joueurs joue coup sur coup, on doit retrouver le dernier joueur") {
+            val partieApresTourDuJoueur1 = partieInitiale.joueur(Joueur.UN).pose(piece1).en(6, 5).joue()
+            val partieApresTourDuJoueur2 = partieApresTourDuJoueur1.joueur(Joueur.DEUX).en(1, 0).pose(piece2).joue()
+
+            partieApresTourDuJoueur2.dernierJoueur shouldBe Joueur.DEUX
+        }
+
+        // -----------------------------------------
+        // INTRODUIRE UN NOUVEL AXE DE TEST (NOUVEAU CONTEXTE?) PARCE QUE ICI ON CHERCHE A VALIDER LES POSITIONS SUCCESSIVES DES PIECES
+
         should("test haut niveau idéal, deux joueurs joue coup sur coup, on doit retrouver les pieces en bonne position") {
             val partieApresTourDuJoueur1 = partieInitiale.joueur(Joueur.UN).pose(piece1).en(6, 5).joue()
             val partieApresTourDuJoueur2 = partieApresTourDuJoueur1.joueur(Joueur.DEUX).en(1, 0).pose(piece2).joue()
@@ -55,18 +65,18 @@ class PartieTest : ShouldSpec({
             partieApresTourDuJoueur2.estEn(0, 0) shouldBe PasDePiece()
         }
 
-        should("test haut niveau idéal, deux joueurs joue coup sur coup, on doit retrouver le dernier joueur") {
+        should("test haut niveau idéal, deux joueurs joue coup sur coup, un joueur pose la piece sur une case occupée") {
             val partieApresTourDuJoueur1 = partieInitiale.joueur(Joueur.UN).pose(piece1).en(6, 5).joue()
-            val partieApresTourDuJoueur2 = partieApresTourDuJoueur1.joueur(Joueur.DEUX).en(1, 0).pose(piece2).joue()
+            // c'est plateau qui a le controle des pieces
+            // on va donc le tester dans plateau
+            // l'API plateau va changer ->  ici, on devrait juste tester qu'on est raccord avec cette variation de l'API
+            val partieApresTourDuJoueur2 = partieApresTourDuJoueur1.joueur(Joueur.DEUX).en(6, 5).pose(piece2).joue()
 
             partieApresTourDuJoueur2.dernierJoueur shouldBe Joueur.DEUX
         }
 
-
         // on experimentera 2 écoles de tests "d'intégration": faut il dans la partie injecter un faux plateau, ou bien tester socialement avec le bon plateau?
 
-
-        // test à écrire:
     }
 
 })
