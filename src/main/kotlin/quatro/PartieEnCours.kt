@@ -1,10 +1,8 @@
 package quatro
 
-class PartieEnCours(val joueurEnCours: Joueur) {
+class PartieEnCours(val joueurEnCours: Joueur, val plateau: Plateau) {
     private var derniereCoordonnees = Coordonees(0, 0)
     private var dernierePieceAPlacer: Piece = PasDePiece()
-
-    fun dernierJoueur(): Joueur = joueurEnCours
 
     fun en(x: Int, y: Int): PartieEnCours {
         this.derniereCoordonnees = Coordonees(x, y)
@@ -17,6 +15,7 @@ class PartieEnCours(val joueurEnCours: Joueur) {
     }
 
     fun joue(): Partie {
-        return Partie( PlateauDimensionsVariables(0, 0), )
+
+        return Partie( this.plateau.placer(this.dernierePieceAPlacer).En(this.derniereCoordonnees), this.joueurEnCours )
     }
 }
