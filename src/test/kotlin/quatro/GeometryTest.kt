@@ -10,7 +10,7 @@ import quatro.doubluresDeTest.FaussePiece
 class GeometryTest : ShouldSpec({
     context("un plateau est formé")
     {
-        val sut = PlateauDimensionsVariables(3, 3)
+        val sut = PlateauDimensionsVariables(3, 3, dernierCoupEstValide = false)
             .placer(FaussePiece(1)).En(0,0)
             .placer(FaussePiece(2)).En(0,1)
 
@@ -24,7 +24,7 @@ class GeometryTest : ShouldSpec({
     }
     context("un autre plateau est formé")
     {
-        val sut = PlateauDimensionsVariables(3, 3)
+        val sut = PlateauDimensionsVariables(3, 3, dernierCoupEstValide = false)
             .placer(FaussePiece(1)).En(0,0)
             .placer(FaussePiece(2)).En(0,1)
             .placer(FaussePiece(3)).En(1,1)
@@ -40,7 +40,7 @@ class GeometryTest : ShouldSpec({
     }
     context("un autre plateau avec plus de pièces")
     {
-        val sut = PlateauDimensionsVariables(3, 3)
+        val sut = PlateauDimensionsVariables(3, 3, dernierCoupEstValide = false)
             .placer(FaussePiece(1)).En(0,0)
             .placer(FaussePiece(2)).En(0,1)
             .placer(FaussePiece(3)).En(1,1)

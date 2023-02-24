@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 class PartieTest : ShouldSpec({
     context("une nouvelle partie est démarée")
     {
-        val plateau = PlateauDimensionsVariables(4000, 3000)
+        val plateau = PlateauDimensionsVariables(4000, 3000, dernierCoupEstValide = false)
         var partieInitiale = Partie(plateau)
         val piece1 = QuatroPiece(
             hauteur = Hauteur.HAUT,
@@ -53,8 +53,11 @@ class PartieTest : ShouldSpec({
             partieApresTourDuJoueur2.dernierJoueur shouldBe Joueur.DEUX
         }
 
+
+
+
         // -----------------------------------------
-        // INTRODUIRE UN NOUVEL AXE DE TEST (NOUVEAU CONTEXTE?) PARCE QUE ICI ON CHERCHE A VALIDER LES POSITIONS SUCCESSIVES DES PIECES
+        // AXE DE TEST  : ON CHERCHE A VALIDER LES TOURS (COUPS) SUCCESSIF
 
         should("test haut niveau idéal, deux joueurs joue coup sur coup, on doit retrouver les pieces en bonne position") {
             val partieApresTourDuJoueur1 = partieInitiale.joueur(Joueur.UN).pose(piece1).en(6, 5).joue()
@@ -63,16 +66,22 @@ class PartieTest : ShouldSpec({
             partieApresTourDuJoueur2.estEn(6, 5) shouldBe piece1
             partieApresTourDuJoueur2.estEn(1, 0) shouldBe piece2
             partieApresTourDuJoueur2.estEn(0, 0) shouldBe PasDePiece()
+            partieApresTourDuJoueur2.dernierCoupEstValide() shouldBe true  // LIGNE SOUS ATTENTION:  ici du test social utile
         }
 
-        should("test haut niveau idéal, deux joueurs joue coup sur coup, un joueur pose la piece sur une case occupée") {
+        // -----------------------------------------
+        // INTRODUIRE UN NOUVEL AXE DE TEST  : ON CHERCHE A VALIDER LES POSITIONS SUCCESSIVES DES PIECES
+        xshould("test haut niveau idéal, deux joueurs joue coup sur coup, un joueur pose la piece sur une case occupée") {
             val partieApresTourDuJoueur1 = partieInitiale.joueur(Joueur.UN).pose(piece1).en(6, 5).joue()
             // c'est plateau qui a le controle des pieces
             // on va donc le tester dans plateau
-            // l'API plateau va changer ->  ici, on devrait juste tester qu'on est raccord avec cette variation de l'API
             val partieApresTourDuJoueur2 = partieApresTourDuJoueur1.joueur(Joueur.DEUX).en(6, 5).pose(piece2).joue()
+            // pour éviter de faire du test trop "social", un spy de plateau serait largement suffisant
+            // et surtout nous éviterai trop de ARRANGE dans ce test (pas la peine de placer autant de pièces)
 
-            partieApresTourDuJoueur2.dernierJoueur shouldBe Joueur.DEUX
+            partieApresTourDuJoueur2.dernierCoupEstValide() shouldBe false
+            partieApresTourDuJoueur2.estEn(6, 5) shouldBe piece1
+            partieApresTourDuJoueur2.dernierJoueur shouldBe Joueur.UN
         }
 
         // on experimentera 2 écoles de tests "d'intégration": faut il dans la partie injecter un faux plateau, ou bien tester socialement avec le bon plateau?

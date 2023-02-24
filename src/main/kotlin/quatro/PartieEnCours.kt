@@ -14,8 +14,6 @@ class PartieEnCours(val joueurEnCours: Joueur, val plateau: Plateau) {
         return this
     }
 
-    fun joue(): Partie {
-
-        return Partie( this.plateau.placer(this.dernierePieceAPlacer).En(this.derniereCoordonnees), this.joueurEnCours )
-    }
+    fun joue(): Partie =
+        Partie( this.plateau.placer(this.dernierePieceAPlacer).En(this.derniereCoordonnees), this.joueurEnCours )
 }

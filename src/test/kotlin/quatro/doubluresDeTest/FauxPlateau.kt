@@ -21,4 +21,8 @@ class FauxPlateau : Plateau {
         TODO("Not yet implemented")
     }
 
+    override fun dernierCoupEstValide(): Boolean {
+        TODO("Not yet implemented")
+    }
+
 }
