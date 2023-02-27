@@ -19,7 +19,11 @@ Kotlin qui nous pousse à de l'immutabilité, du style fonctionnel, de typage fo
 Je vais détailler ici ce que nous apprenons à chaque fois que nous commitons du code sur cet exercice.
 
 
-## Test First, intention revealing
+## Mikado méthode et Carte à la Wardley
+
+## Test First, révélateur d'une bonne raison
+
+## Rouge pour les bonnes raisons
 
 ## Construire son code dans les tests comme si c'était une API
 
@@ -33,6 +37,9 @@ Je vais détailler ici ce que nous apprenons à chaque fois que nous commitons d
 
 ## primitive obsession
 
+## refactoring: uniquement si tout est au vert
+
+## refactoring: paralell change
 
 ## fluent API
 
