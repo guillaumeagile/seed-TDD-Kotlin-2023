@@ -31,6 +31,13 @@ Je vais détailler ici ce que nous apprenons à chaque fois que nous commitons d
 
 ## fluent API
 
+## Loi de Demeter et fluent API
+
+Attention, malgré les apparentes, écrire une "fluent API" ne casse pas la loi de Demeter.
+En effet, l'encapsulation n'est pas brisé, car après chaque point, ce ne sont pas des détails internes de la classe (des propriétés) qui sont exposés
+mais bien des fonctions publiques, qui sont volontairement écrites pour être utilisées. Et elles sont documentées. C'est à dire que leur comportement est
+vérifié ET documenté par les tests unitaires.
+
 ## fonctions honnetes
 
 ## primitive obsession
@@ -43,5 +50,13 @@ Je vais détailler ici ce que nous apprenons à chaque fois que nous commitons d
 
 ## CUPID
 
-##
+## tests unitaires
+
+## boites blanches ou boites noires
+
+## tests sociaux
+
+## test d'intégration: définition et limites
+
+
 
