@@ -67,5 +67,22 @@ vérifié ET documenté par les tests unitaires.
 
 ## Tests d'intégration: définition et limites
 
+## Tests de consolidation
+un cas non passant (bug) se présente mais on pourrait le passer (YAGNI???)
+Le YAGNI ne s'applique pas aux bugs. Les bugs sont de la perte de valeur.
+Poser le test nous coute 30 secondes. Allons y.
+Ici, on a une notion de complétude, de couverture de cas liées à un type.
+
+De toutes façons, le mutation testing aurait de suite levé le loup et nous aurait forcé à écrire le test qui manque.
+
+TODO: integrer mutation testing dans le projet.
+
+
+
+
+
+
+
+## Tests de documentation
 
 
