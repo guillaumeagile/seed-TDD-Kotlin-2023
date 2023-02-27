@@ -29,6 +29,11 @@ Je vais détailler ici ce que nous apprenons à chaque fois que nous commitons d
 
 ## plus fonctionnel
 
+## fonctions honnetes
+
+## primitive obsession
+
+
 ## fluent API
 
 ## Loi de Demeter et fluent API
@@ -38,25 +43,22 @@ En effet, l'encapsulation n'est pas brisé, car après chaque point, ce ne sont 
 mais bien des fonctions publiques, qui sont volontairement écrites pour être utilisées. Et elles sont documentées. C'est à dire que leur comportement est
 vérifié ET documenté par les tests unitaires.
 
-## fonctions honnetes
 
-## primitive obsession
+## Entités
 
-## entités
-
-## agrégats
+## Agrégats
 
 ## SRP
 
 ## CUPID
 
-## tests unitaires
+## Tests unitaires
 
-## boites blanches ou boites noires
+## Boites blanches ou boites noires
 
-## tests sociaux
+## Tests sociaux
 
-## test d'intégration: définition et limites
+## Tests d'intégration: définition et limites
 
 
 
