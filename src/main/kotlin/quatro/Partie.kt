@@ -12,4 +12,8 @@ class Partie(val plateau: Plateau,  val dernierJoueur: Joueur = Joueur.AUCUN) {
     fun dernierCoupEstValide(): Boolean {
      return plateau.dernierCoupEstValide()
     }
+
+    fun estGagnee(): Boolean {
+        return true
+    }
 }

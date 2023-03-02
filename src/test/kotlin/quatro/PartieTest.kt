@@ -121,6 +121,18 @@ class PartieTest : ShouldSpec({
             var partieInitiale = Partie(plateau)
             partieInitiale.estEn(6, 5) shouldBe piece1  // ici du test social utile
         }
+
+        should("la partie demande au plateau si on a un vainqueur") {
+            val plateau = FauxPlateau(dernierCoupEstValide = false, piece1)
+            var partieInitiale = Partie(plateau)
+            partieInitiale.estGagnee() shouldBe true  // ici du test social utile
+        }
+
+        should("la partie demande au plateau si personne n'a encore gagné") {
+            val plateau = FauxPlateau(dernierCoupEstValide = false, piece1)
+            var partieInitiale = Partie(plateau)
+            partieInitiale.estGagnee() shouldBe false  // ici du test social utile
+        }
     }
 
 })
