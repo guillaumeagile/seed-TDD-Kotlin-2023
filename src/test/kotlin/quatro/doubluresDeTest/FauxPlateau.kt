@@ -4,13 +4,13 @@ import quatro.Piece
 import quatro.PieceAPlacer
 import quatro.Plateau
 
-class FauxPlateau : Plateau {
+class FauxPlateau(val dernierCoupEstValide: Boolean, val dernierePieceConnue: Piece = FaussePiece(0))  : Plateau {
     override fun placer(piece: Piece): PieceAPlacer {
         TODO("Not yet implemented")
     }
 
     override fun estEn(x: Int, y: Int): Piece {
-        TODO("Not yet implemented")
+        return dernierePieceConnue
     }
 
     override fun nouvellePieceEn(piece: Piece, x: Int, y: Int): Plateau {
@@ -22,7 +22,7 @@ class FauxPlateau : Plateau {
     }
 
     override fun dernierCoupEstValide(): Boolean {
-        TODO("Not yet implemented")
+        return dernierCoupEstValide
     }
 
 }

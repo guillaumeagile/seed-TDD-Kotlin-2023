@@ -2,6 +2,7 @@ package quatro
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
+import quatro.doubluresDeTest.FauxPlateau
 
 @Suppress("unused")
 class PartieTest : ShouldSpec({
@@ -63,29 +64,63 @@ class PartieTest : ShouldSpec({
             val partieApresTourDuJoueur1 = partieInitiale.joueur(Joueur.UN).pose(piece1).en(6, 5).joue()
             val partieApresTourDuJoueur2 = partieApresTourDuJoueur1.joueur(Joueur.DEUX).en(1, 0).pose(piece2).joue()
 
+            // LES 4 LIGNES SUIVANTES SONT DEJA VERIFIEES PAR LES TESTS DU PLATEAU
+            /*
             partieApresTourDuJoueur2.estEn(6, 5) shouldBe piece1
             partieApresTourDuJoueur2.estEn(1, 0) shouldBe piece2
             partieApresTourDuJoueur2.estEn(0, 0) shouldBe PasDePiece()
             partieApresTourDuJoueur2.dernierCoupEstValide() shouldBe true  // LIGNE SOUS ATTENTION:  ici du test social utile
+            VOIR TEST SOCIAL PLUS BAS
+            */
+
+            // PARTIE UTILE ICI:
+            partieApresTourDuJoueur2.dernierJoueur shouldBe Joueur.DEUX
         }
 
         // -----------------------------------------
-        // INTRODUIRE UN NOUVEL AXE DE TEST  : ON CHERCHE A VALIDER LES POSITIONS SUCCESSIVES DES PIECES
-        xshould("test haut niveau idéal, deux joueurs joue coup sur coup, un joueur pose la piece sur une case occupée") {
+        // UN NOUVEL AXE DE TEST  : ON CHERCHE A VALIDER LES POSITIONS SUCCESSIVES DES PIECES
+        should("test haut niveau idéal, deux joueurs joue coup sur coup, un joueur pose la piece sur une case occupée") {
             val partieApresTourDuJoueur1 = partieInitiale.joueur(Joueur.UN).pose(piece1).en(6, 5).joue()
-            // c'est plateau qui a le controle des pieces
-            // on va donc le tester dans plateau
             val partieApresTourDuJoueur2 = partieApresTourDuJoueur1.joueur(Joueur.DEUX).en(6, 5).pose(piece2).joue()
             // pour éviter de faire du test trop "social", un spy de plateau serait largement suffisant
             // et surtout nous éviterai trop de ARRANGE dans ce test (pas la peine de placer autant de pièces)
 
-            partieApresTourDuJoueur2.dernierCoupEstValide() shouldBe false
-            partieApresTourDuJoueur2.estEn(6, 5) shouldBe piece1
+            // LES DEUX LIGNES SUIVANTES SONT DEJA VERIFIEES PAR AILLEURS
+            // partieApresTourDuJoueur2.dernierCoupEstValide() shouldBe false
+            // partieApresTourDuJoueur2.estEn(6, 5) shouldBe piece1
+            // VOIR TEST SOCIAL PLUS BAS
+
+            // PARTIE UTILE ICI:
             partieApresTourDuJoueur2.dernierJoueur shouldBe Joueur.UN
         }
 
-        // on experimentera 2 écoles de tests "d'intégration": faut il dans la partie injecter un faux plateau, ou bien tester socialement avec le bon plateau?
+    }
 
+    context("test social avec doublure"){
+        val piece1 = QuatroPiece(
+            hauteur = Hauteur.HAUT,
+            forme = Forme.CARRE,
+            couleur = Couleur.CLAIRE,
+            cavite = Cavite.PLEINE
+        )
+
+        should("le dernier coup valide est celui donné par le plateau") {
+            val plateau = FauxPlateau(dernierCoupEstValide = true)
+            var partieInitiale = Partie(plateau)
+            partieInitiale.dernierCoupEstValide() shouldBe true  // ici du test social utile
+        }
+
+        should("le dernier coup invalide est celui donné par le plateau") {
+            val plateau = FauxPlateau(dernierCoupEstValide = false)
+            var partieInitiale = Partie(plateau)
+            partieInitiale.dernierCoupEstValide() shouldBe false  // ici du test social utile
+        }
+
+        should("la partie demande au plateau la position de chaque pièce") {
+            val plateau = FauxPlateau(dernierCoupEstValide = false, piece1)
+            var partieInitiale = Partie(plateau)
+            partieInitiale.estEn(6, 5) shouldBe piece1  // ici du test social utile
+        }
     }
 
 })

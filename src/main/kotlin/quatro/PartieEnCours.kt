@@ -14,6 +14,12 @@ class PartieEnCours(val joueurEnCours: Joueur, val plateau: Plateau) {
         return this
     }
 
-    fun joue(): Partie =
-        Partie( this.plateau.placer(this.dernierePieceAPlacer).En(this.derniereCoordonnees), this.joueurEnCours )
+    fun joue(): Partie {
+        val plateau1 = this.plateau.placer(this.dernierePieceAPlacer).En(this.derniereCoordonnees)
+        if (plateau1.dernierCoupEstValide())
+             return Partie(plateau1, this.joueurEnCours )
+        return Partie(this.plateau,  this.joueurEnCours.choisiLautreJoueur() ) // TODO: à changer avec le dernier "bon" joueur connu
+    }
+
 }
+
