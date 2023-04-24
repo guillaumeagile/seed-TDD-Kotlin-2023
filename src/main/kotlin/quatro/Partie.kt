@@ -20,6 +20,8 @@ class Partie(val plateau: Plateau,  val dernierJoueur: Joueur = Joueur.AUCUN) {
 }
 
  fun List<QuatroPiece>.ontToutesUneCaracteristiqueCommune(): Boolean {
+     if (this.isEmpty())
+         return false;
      val couleurDu1erElemement = this.first().couleur
      return this.all { p -> p.couleur == couleurDu1erElemement }
  }

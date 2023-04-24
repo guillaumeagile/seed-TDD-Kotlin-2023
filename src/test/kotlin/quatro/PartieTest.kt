@@ -156,6 +156,13 @@ class PartieTest : ShouldSpec({
 
             actual shouldBe true
         }
+
+        should("liste videe"){
+            val sut =    emptyList<QuatroPiece>()
+            val actual = sut.ontToutesUneCaracteristiqueCommune()
+
+            actual shouldBe false
+        }
     }
 
 })
