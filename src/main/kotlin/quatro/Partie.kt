@@ -23,6 +23,8 @@ fun List<QuatroPiece>.ontToutesUneCaracteristiqueCommune(): Boolean {
     if (this.isEmpty())
         return false;
 
-    return this.all { p -> p.couleur == this.first().couleur }
+    return     this.all { p -> p.couleur == this.first().couleur }
             || this.all { p -> p.hauteur == this.first().hauteur }
+            || this.all { p -> p.cavite == this.first().cavite }
+            || this.all { p -> p.forme == this.first().forme }
 }
