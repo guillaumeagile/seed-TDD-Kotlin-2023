@@ -163,6 +163,15 @@ class PartieTest : ShouldSpec({
 
             actual shouldBe false
         }
+
+        should("WIP trouver que toutes les pieces ont toutes au moins en commun une  autre caractéristique"){
+            val piece2 = piece1.differentPour(couleur = Couleur.SOMBRE)
+            // TODO:  revoir API differentPour,  ne pas avoir à spécifier la couleur mais prendre la couleur opposée
+            val sut =    listOf(piece1, piece2)
+            val actual = sut.ontToutesUneCaracteristiqueCommune()
+
+            actual shouldBe true
+        }
     }
 
 })

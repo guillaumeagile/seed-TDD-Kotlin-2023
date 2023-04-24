@@ -48,6 +48,12 @@ class PieceTest : ShouldSpec({
             observe shouldNotBe attendu
         }
 
+        should("inégalite de deux pièces lorsqu'elles diffèrent d'une caractéristique ici la couleur") {
+            val attendu = observe.differentPour(couleur = Couleur.CLAIRE)
+
+            observe shouldNotBe attendu
+        }
+
 
         should("aucune caractéristique en commun") {
             val attendu = QuatroPiece(
