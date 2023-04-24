@@ -14,6 +14,15 @@ class Partie(val plateau: Plateau,  val dernierJoueur: Joueur = Joueur.AUCUN) {
     }
 
     fun estGagnee(): Boolean {
+      //  plateau.touteLesPiecesALaVerticale(0).ontToutesUneCaracteristiqueCommune()
         return true
     }
 }
+
+ fun List<QuatroPiece>.ontToutesUneCaracteristiqueCommune(): Boolean {
+     // obtenir la liste des hauteurs de toutes les pieces, puis voir si cette liste est homogène
+     val liste = this as List<QuatroPiece>
+     val couleurDu1erElemement = liste.first().couleur
+
+     return liste.all { p -> p.couleur == couleurDu1erElemement }
+ }

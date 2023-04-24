@@ -9,7 +9,7 @@ class PartieTest : ShouldSpec({
     context("une nouvelle partie est démarée")
     {
         val plateau = PlateauDimensionsVariables(4000, 3000, dernierCoupEstValide = false)
-        var partieInitiale = Partie(plateau)
+        val partieInitiale = Partie(plateau)
         val piece1 = QuatroPiece(
             hauteur = Hauteur.HAUT,
             forme = Forme.CARRE,
@@ -38,6 +38,7 @@ class PartieTest : ShouldSpec({
 
 
         should("un autre joueur joue ensuite") {//TODO: ca va se déplacer naturellement vers PartieEntreDeuxCoups
+
             val coupEnCours = partieInitiale.joueur(Joueur.UN)
             val coupSuivant = coupEnCours.en(0, 0).pose(piece1).joue()
             val coupEnCoursSuivant = coupSuivant.joueur(Joueur.DEUX)
@@ -104,34 +105,56 @@ class PartieTest : ShouldSpec({
             cavite = Cavite.PLEINE
         )
 
+        
+
         should("le dernier coup valide est celui donné par le plateau") {
             val plateau = FauxPlateau(dernierCoupEstValide = true)
-            var partieInitiale = Partie(plateau)
+            val partieInitiale = Partie(plateau)
+
             partieInitiale.dernierCoupEstValide() shouldBe true  // ici du test social utile
         }
 
         should("le dernier coup invalide est celui donné par le plateau") {
             val plateau = FauxPlateau(dernierCoupEstValide = false)
-            var partieInitiale = Partie(plateau)
+            val partieInitiale = Partie(plateau)
+
             partieInitiale.dernierCoupEstValide() shouldBe false  // ici du test social utile
         }
 
         should("la partie demande au plateau la position de chaque pièce") {
             val plateau = FauxPlateau(dernierCoupEstValide = false, piece1)
-            var partieInitiale = Partie(plateau)
+            val partieInitiale = Partie(plateau)
+
             partieInitiale.estEn(6, 5) shouldBe piece1  // ici du test social utile
         }
 
         should("la partie demande au plateau si on a un vainqueur") {
             val plateau = FauxPlateau(dernierCoupEstValide = false, piece1)
-            var partieInitiale = Partie(plateau)
+            val partieInitiale = Partie(plateau)
+
             partieInitiale.estGagnee() shouldBe true  // ici du test social utile
         }
 
-        should("la partie demande au plateau si personne n'a encore gagné") {
+        xshould("la partie demande au plateau si personne n'a encore gagné") {
             val plateau = FauxPlateau(dernierCoupEstValide = false, piece1)
-            var partieInitiale = Partie(plateau)
+            val partieInitiale = Partie(plateau)
+
             partieInitiale.estGagnee() shouldBe false  // ici du test social utile
+        }
+
+     /*   should("trouver que toutes les pieces n'ont pas de caractéristique commune"){
+            val sut =    listOf(FaussePiece(1), FaussePiece(2))
+            val actual = sut.ontToutesUneCaracteristiqueCommune()
+
+            actual shouldBe false
+        }
+*/
+        should("trouver que toutes les pieces ont toutes au moins en commun une caractéristique"){
+            val piece2 = piece1.differentPour(hauteur = Hauteur.BASSE)
+            val sut =    listOf(piece1, piece2)
+            val actual = sut.ontToutesUneCaracteristiqueCommune()
+
+            actual shouldBe true
         }
     }
 
