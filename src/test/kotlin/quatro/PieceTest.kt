@@ -3,17 +3,17 @@ package quatro
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
-import quatro.doubluresDeTest.FaussePiece
+import quatro.doubluresDeTest.PiecePourLesTests
 
 @Suppress("unused")
 class PieceTest : ShouldSpec({
     context("un piece est déclarée")
     {
-        val sut = FaussePiece(1);
+        val sut = PiecePourLesTests(1);
 
         should("égalite et inégalité") {
-            sut shouldBe FaussePiece(1)
-            sut shouldNotBe FaussePiece(2)
+            sut shouldBe PiecePourLesTests(1)
+            sut shouldNotBe PiecePourLesTests(2)
             sut shouldNotBe PasDePiece()
         }
 

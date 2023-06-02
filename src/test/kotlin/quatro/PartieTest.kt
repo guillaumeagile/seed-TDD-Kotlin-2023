@@ -105,8 +105,6 @@ class PartieTest : ShouldSpec({
             cavite = Cavite.PLEINE
         )
 
-
-
         should("le dernier coup valide est celui donné par le plateau") {
             val plateau = FauxPlateau(dernierCoupEstValide = true)
             val partieInitiale = Partie(plateau)
