@@ -1,13 +1,10 @@
 package draft;
 
-import draft.AutreExemple;
-import draft.Exemple;
-import draft.IExemple;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ExempleTest {
+class JupiterExempleTest {
     @Test
     public void Test1(){
         //arrange
