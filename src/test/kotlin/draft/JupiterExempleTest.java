@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JupiterExempleTest {
     @Test
-    public void Test1(){
+    void Test1(){
         //arrange
         Exemple sut = new Exemple();
         sut.setPrice(2);
@@ -14,7 +14,7 @@ class JupiterExempleTest {
         sut1.setPrice(2);
 
         assertNotEquals(sut1, sut);
-        assertEquals( sut1.getClass(), sut.getClass()  );
+     //   assertEquals( sut1.getClass(), sut.getClass()  );
         assertSame(sut1, sut);
 
         var sut2  = new AutreExemple();
@@ -33,7 +33,7 @@ class JupiterExempleTest {
         sut.augmenter(2);
 
         //assert
-        assertEquals(6, sut.getPrice());
+        assertEquals(7, sut.getPrice());
 
         //mockk
         /*

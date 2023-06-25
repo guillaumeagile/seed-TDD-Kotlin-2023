@@ -68,7 +68,8 @@ test {
     useJUnit()
     useJUnitPlatform()
     testLogging {
-        events "PASSED", "FAILED", "SKIPPED"
+        //events "PASSED", "FAILED", "SKIPPED"
+        events "passed", "skipped", "failed"
         exceptionFormat TestExceptionFormat.FULL
     }
     beforeTest { descriptor ->
