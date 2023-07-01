@@ -1,8 +1,8 @@
-package caisseAntiSeche
+package draft.caisseAntiSeche
 
 import java.math.BigDecimal
 
-class Achete {
+class Encaisseur {
     companion object {
         fun UnArticle(): Article {
             return Article( BigDecimal.ZERO)

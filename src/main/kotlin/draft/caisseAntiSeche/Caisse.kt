@@ -1,4 +1,4 @@
-package caisseAntiSeche
+package draft.caisseAntiSeche
 
 class Caisse {
     val totalAffiche: String
