@@ -8,9 +8,9 @@ import io.kotest.matchers.should
 import io.kotest.matchers.types.beInstanceOf
 
 class BehaviorSpec : BehaviorSpec({
-    given("we have head") {
-        val headState = HeadState(listOf("Alice", "Bob"))
-        `when`("that we init") {
+    given("a head") {
+        val headState = HeadState(awaitedCommiters = listOf("Alice", "Bob"))
+        `when`("we init it") {
             val actualState = headState.initialize()
             then("it's initial") {
                 actualState should beInstanceOf<State.Initial>()
@@ -29,6 +29,7 @@ class BehaviorSpec : BehaviorSpec({
                         afterAliceState.actualCommiters shouldHaveSize 2
                         afterAliceState should beInstanceOf<State.Open>()
                     }
+
                     `when`("we have observed a commit by Zoe") {
                         val afterZoeState = afterAliceState.onCommitObserved("Zoe")
                         then("it hasn't changed") {
@@ -42,6 +43,7 @@ class BehaviorSpec : BehaviorSpec({
                                 afterAliceUnfairState.actualCommiters shouldHaveSize 2
                                 afterAliceUnfairState should beInstanceOf<State.UnfairUsage>()
                             }
+
                             `when`("unfair is a dead end, any commit can happen") {
                                 val stillAliceUnfairState = afterAliceUnfairState.onCommitObserved("Zoe")
                                 then("it's still not fair") {
