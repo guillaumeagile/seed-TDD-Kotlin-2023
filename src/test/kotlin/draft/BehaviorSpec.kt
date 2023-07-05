@@ -29,6 +29,28 @@ class BehaviorSpec : BehaviorSpec({
                         afterAliceState.actualCommiters shouldHaveSize 2
                         afterAliceState should beInstanceOf<State.Open>()
                     }
+                    `when`("we have observed a commit by Zoe") {
+                        val afterZoeState = afterAliceState.onCommitObserved("Zoe")
+                        then("it hasn't changed") {
+                            afterZoeState.actualCommiters shouldHaveSize 2
+                            afterZoeState should beInstanceOf<State.Open>()
+                        }
+
+                        `when`("we have observed a 2nd commit by Alice") {
+                            val afterAliceUnfairState = afterZoeState.onCommitObserved("Alice")
+                            then("it's not fair") {
+                                afterAliceUnfairState.actualCommiters shouldHaveSize 2
+                                afterAliceUnfairState should beInstanceOf<State.UnfairUsage>()
+                            }
+                            `when`("unfair is a dead end, any commit can happen") {
+                                val stillAliceUnfairState = afterAliceUnfairState.onCommitObserved("Zoe")
+                                then("it's still not fair") {
+                                    stillAliceUnfairState.actualCommiters shouldHaveSize 2
+                                    stillAliceUnfairState should beInstanceOf<State.UnfairUsage>()
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
